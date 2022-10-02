@@ -90,9 +90,9 @@ class Api {
             .then(this._checkResponse);
     }
 
-    addLikeCard(cartId) {
+    changeLikeCardStatus(cartId, isLiked) {
         return fetch(`${this.baseUrl}/cards/${cartId}/likes`, {
-            method: 'PUT',
+            method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: {
                 authorization: this.authorization,
             },
@@ -100,15 +100,15 @@ class Api {
             .then(this._checkResponse);
     }
 
-    deleteLikeCard(cartId) {
-        return fetch(`${this.baseUrl}/cards/${cartId}/likes`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this.authorization,
-            },
-        })
-            .then(this._checkResponse);
-    }
+    // deleteLikeCard(cartId) {
+    //     return fetch(`${this.baseUrl}/cards/${cartId}/likes`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: this.authorization,
+    //         },
+    //     })
+    //         .then(this._checkResponse);
+    // }
 }
 
 export const api = new Api({

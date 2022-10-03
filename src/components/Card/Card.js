@@ -14,13 +14,13 @@ function Card(props) {
 
     const handleLikeClick = () => {
         props.onCardLike(card);
-    },
-        handleDeleteClick = () => {
+    };
+    const handleDeleteClick = () => {
         props.onCardDelete(card);
-    },
-        handleClick = () => {
+    };
+    const handleClick = () => {
         props.onCardClick(props.card);
-    }
+    };
 
     return (
     <div className="card">

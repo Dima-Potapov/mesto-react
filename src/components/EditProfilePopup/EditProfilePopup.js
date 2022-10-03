@@ -10,18 +10,18 @@ function EditProfilePopup(props) {
 
     const handleInputDescription = (event) => {
         setDescription(event.target.value);
-    },
-        handleInputName = (event) => {
+    };
+    const handleInputName = (event) => {
         setName(event.target.value);
-    },
-        handleSubmit = (event) => {
+    };
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         props.onUpdateUser({
             name,
             about: description,
         });
-    }
+    };
 
     useEffect(() => {
         setName(currentUser.name);
@@ -31,12 +31,12 @@ function EditProfilePopup(props) {
     return (
         <PopupWithForm name={'edit-profile-popup'} title={'Редактировать профиль'} isOpen={props.isOpen} onClose={props.onClose} buttonText={'Сохранить'} onSubmit={handleSubmit}>
             <div className="popup__form-group">
-                <input className="popup__input" id="username" name="name" type="text" placeholder="Имя" value={name}
+                <input className="popup__input" id="username" name="name" type="text" placeholder="Имя" value={name || ""}
                        minLength="2" maxLength="40" required onChange={handleInputName}></input>
                 <span id="username-error" className="popup__form-error"></span>
             </div>
             <div className="popup__form-group">
-                <input className="popup__input" id="about" name="about" type="text" value={description}
+                <input className="popup__input" id="about" name="about" type="text" value={description || ""}
                        placeholder="Профессия" minLength="2" maxLength="200" required onChange={handleInputDescription}></input>
                 <span id="about-error" className="popup__form-error"></span>
             </div>

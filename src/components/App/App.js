@@ -38,58 +38,73 @@ function App() {
 
   const handleEditAvatarClick = () => {
         setIsEditAvatarPopupOpen(true);
-      },
-      handleEditProfileClick = () => {
+      };
+    const handleEditProfileClick = () => {
         setIsEditProfilePopupOpen(true);
-      },
-      handleAddPlaceClick = () => {
+      };
+    const handleAddPlaceClick = () => {
         setIsAddPlacePopupOpen(true);
-      },
-      closeAllPopups = () => {
+      };
+    const closeAllPopups = () => {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setSelectedCard(null);
-      },
-      handleCardClick = (card) => {
+      };
+    const handleCardClick = (card) => {
         setSelectedCard(card)
-      },
-      handleUpdateUser = (userData) => {
+      };
+    const handleUpdateUser = (userData) => {
           api.editUserData(userData)
               .then(newUserData => {
                   setCurrentUser(newUserData);
 
                   closeAllPopups();
               })
-      },
-      handleUpdateAvatar = (avatar) => {
+              .catch((err) => {
+                  console.log(err);
+              });
+      };
+    const handleUpdateAvatar = (avatar) => {
           api.editUserAvatar(avatar)
               .then(newUserData => {
                   setCurrentUser(newUserData);
 
                   closeAllPopups();
               })
-      },
-      handleAddPlaceSubmit = (newCard) => {
+              .catch((err) => {
+                  console.log(err);
+              });
+      };
+    const handleAddPlaceSubmit = (newCard) => {
           api.addCard(newCard)
               .then(newUserData => {
                   setCards([newUserData, ...cards]);
 
                   closeAllPopups();
               })
-      },
-      handleCardLike = (card) => {
+              .catch((err) => {
+                  console.log(err);
+              });
+      };
+    const handleCardLike = (card) => {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
 
         api.changeLikeCardStatus(card._id, !isLiked)
             .then((newCard) => {
                 setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            })
+            .catch((err) => {
+                console.log(err);
             });
-    },
-      handleCardDelete = (card) => {
+    };
+    const handleCardDelete = (card) => {
         api.deleteCard(card._id)
             .then((res) => {
-                setCards(() => cards.filter((c) => c._id !== card._id));
+                setCards(cards => cards.filter((c) => c._id !== card._id));
+            })
+            .catch((err) => {
+                console.log(err);
             });
     };
 

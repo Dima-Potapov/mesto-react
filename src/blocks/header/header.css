@@ -3,10 +3,10 @@
   justify-content: space-between;
   max-width: calc(100% - 200px * 2);
   min-height: 74px;
-  margin: 45px auto 0;
+  margin: 45px 200px 0;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   box-sizing: border-box;
-  
+  align-items: flex-start;
 }
 
 @media screen and (max-width:929px) {
